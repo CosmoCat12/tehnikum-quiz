@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/Header";
 import { AppInput } from "../components/AppInput";
 import { AppButton } from "../components/appButton";
+import { RegistrationPage } from "./RegistrationPage";
 
 const Welcome = () => {
   return (
@@ -12,7 +13,7 @@ const Welcome = () => {
           <form className="welcome__form">
             <AppInput
               inputText="Вашe имя"
-              errorText={"Ввудите имя в правильном формате"}
+              errorText={"Введите имя в правильном формате"}
               inputPlaceholder="Введите ваше имя"
               inputType="text"
             />
@@ -22,7 +23,8 @@ const Welcome = () => {
               inputPlaceholder="Введите ваш номер"
               inputType="tel"
             />
-            <AppButton isDisabled={false}/>
+            <AppButton isDisabled={false} />
+            <RegistrationPage />
           </form>
         </div>
       </div>

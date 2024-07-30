@@ -1,19 +1,22 @@
 import React from "react";
 
-export const AppInput = () => {
+export const AppInput = ({
+  inputText,
+  errorText,
+  inputPlaceholder,
+  inputType,
+}) => {
   return (
     <label className="input-wrapper" htmlFor="username">
-      Ваше имя
+      {inputText}
       <input
         required
-        type="text"
+        type={inputType}
         name="username"
         id="username"
-        placeholder="Ваш ответ"
+        placeholder={inputPlaceholder}
       />
-      <span id="error-message">
-        Введите номер в правильном формате например
-      </span>
+      <span id="error-message">{errorText}</span>
     </label>
   );
 };

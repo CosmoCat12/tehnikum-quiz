@@ -15,7 +15,7 @@ export const ProgresBar = ({ currentStep }) => {
           <div
             key={i}
             className={`indicator__unit indicator__unit-${e} ${
-              currentStep > i && "_acitve"
+              currentStep > i && "_active"
             }`}
           ></div>
         ))}

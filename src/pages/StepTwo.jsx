@@ -30,12 +30,14 @@ const StepTwo = () => {
     navigate("/step-three");
   };
   const [courseVariants, setCourseVariants] = useState(null);
+  const [buttonError, setButtonError] = useState(true);
   useEffect(() => {
     if (courseVariants === null) {
       localStorage.setItem("course", "");
+      setButtonError(true);
     } else {
       localStorage.setItem("course", courseVariants);
-      navigate("/step-three");
+      setButtonError(false);
     }
   }, [courseVariants]);
   return (
@@ -55,7 +57,7 @@ const StepTwo = () => {
                 />
               ))}
             </ul>
-            <AppButton buttonClick={handleClick} isDisabled={true} />
+            <AppButton buttonClick={handleClick} isDisabled={buttonError} />
           </div>
         </div>
       </div>

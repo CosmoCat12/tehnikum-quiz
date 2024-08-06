@@ -9,26 +9,36 @@ const Welcome = () => {
   const [phone, setPhone] = useState("");
   const [nameError, setNameError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
-  const navigate = useNavigate("/step-one");
+  const navigate = useNavigate();
   const [buttonError, setButtonError] = useState(true);
 
   const regex = /^[A-Za-zА-Яа-яЁё]+$/;
   const regexNum =
-    /^\+?\d{1,4}|\(\d{1,4}\)[-.\s]?\d{1,4}[-.\s]?\d{1,3}[-.\s]?\d{1,4}$/;
+    /^\+?\d{1,4}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,3}[-.\s]?\d{1,4}$/;
 
   const handleClick = () => {
+    let valid = true;
     if (!regex.test(name)) {
       setNameError(true);
-    } else if (!regexNum.test(phone)) {
-      setPhoneError(true);
+      valid = false;
     } else {
       setNameError(false);
+    }
+
+    if (!regexNum.test(phone)) {
+      setPhoneError(true);
+      valid = false;
+    } else {
       setPhoneError(false);
+    }
+
+    if (valid) {
       navigate("/step-one");
-      localStorage.setItem("user_name", JSON.stringify({ name }));
-      localStorage.setItem("user_name", JSON.stringify({ phone }));
+      localStorage.setItem("user_name", JSON.stringify(name));
+      localStorage.setItem("user_phone", JSON.stringify(phone));
     }
   };
+
   useEffect(() => {
     setButtonError(!(name.length > 0 && phone.length > 0));
   }, [name, phone]);
@@ -53,17 +63,14 @@ const Welcome = () => {
             />
             <AppInput
               inputText="Ваш номер"
-              errorText={"Введите номер в правильном формате например"}
+              errorText={"Введите номер в правильном формате"}
               inputPlaceholder="Введите ваш номер"
               inputType="tel"
               inputValue={phone}
               inputChange={setPhone}
               hasError={phoneError}
             />
-
             <AppButton isDisabled={buttonError} buttonClick={handleClick} />
-
-            {/* <RegistrationPage /> */}
           </form>
         </div>
       </div>

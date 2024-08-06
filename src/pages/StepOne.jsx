@@ -29,7 +29,7 @@ const StepOne = () => {
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
-          <ProgresBar currentStep={2} /> {/* исправлено название компонента */}
+          <ProgresBar currentStep={1} /> {/* исправлено название компонента */}
           <div className="question">
             <h2>1. Занимательный вопрос</h2>
             <label className="input-wrapper">

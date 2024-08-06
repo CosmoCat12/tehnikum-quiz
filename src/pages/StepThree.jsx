@@ -1,24 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { ProgresBar } from "../components/ProgresBar";
+import { useNavigate } from "react-router-dom";
+import { AppButton } from "../components/appButton";
 
 const StepThree = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/thanks");
+  };
   return (
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description">
-                Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2 _active"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <ProgresBar currentStep={3} />
           <div className="question">
             <h2>3. Занимательный вопрос</h2>
             <ul className="emoji-variants">
@@ -51,9 +46,7 @@ const StepThree = () => {
                 </label>
               </li>
             </ul>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+            <AppButton buttonClick={handleClick} />
           </div>
         </div>
       </div>

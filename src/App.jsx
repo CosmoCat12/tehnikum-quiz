@@ -5,14 +5,44 @@ import StepTwo from "./pages/StepTwo";
 import StepThree from "./pages/StepThree";
 import StepFour from "./pages/StepFour";
 import Thanks from "./pages/Thanks";
-import { RegistrationPage } from "./pages/RegistrationPage";
+
 import "./styles/main.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 const App = () => {
-  return (
-    <div className="App">
-      <Welcome />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Welcome />,
+
+    },
+    {
+      path: "/step-one",
+      element: <StepOne />,
+    },
+    {
+      path: "/step-two",
+      element: <StepTwo />,
+
+    },
+    {
+      path: "/step-three",
+      element: <StepThree />,
+    },
+    {
+      path: "/step-four",
+      element: <StepFour />,
+    },
+    {
+      path: "/thanks",
+      element: <Thanks />,
+
+    },
+
+  ]);
+
+  return <RouterProvider router={router} />;
 };
 
 export default App;
+

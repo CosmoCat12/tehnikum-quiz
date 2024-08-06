@@ -5,6 +5,9 @@ export const AppInput = ({
   errorText,
   inputPlaceholder,
   inputType,
+  inputValue,
+  inputChange,
+  hasError,
 }) => {
   return (
     <label className="input-wrapper" htmlFor="username">
@@ -15,8 +18,10 @@ export const AppInput = ({
         name="username"
         id="username"
         placeholder={inputPlaceholder}
+        value={inputValue}
+        onChange={(event) => inputChange(event.target.value)}
       />
-      <span id="error-message">{errorText}</span>
+      {hasError && <span id="error-message">{errorText}</span>}
     </label>
   );
 };

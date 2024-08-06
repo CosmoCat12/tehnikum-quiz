@@ -1,47 +1,61 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ProgresBar } from "../components/ProgresBar";
+import { AnswerItem } from "../components/AnswerItem";
+import { AppButton } from "../components/appButton";
+import { Header } from "../components/Header";
+import { useState, useEffect } from "react";
 
 const StepTwo = () => {
+  const varirants = [
+    {
+      variantId: "variant-1",
+      variantText: "Frontend ",
+    },
+    {
+      variantId: "variant-2",
+      variantText: "Backend ",
+    },
+    {
+      variantId: "variant-3",
+      variantText: "UX/UI ",
+    },
+    {
+      variantId: "variant-4",
+      variantText: "Data Аналитик ",
+    },
+  ];
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/step-three");
+  };
+  const [courseVariants, setCourseVariants] = useState(null);
+  useEffect(() => {
+    if (courseVariants === null) {
+      localStorage.setItem("course", "");
+    } else {
+      localStorage.setItem("course", courseVariants);
+      navigate("/step-three");
+    }
+  }, [courseVariants]);
   return (
     <div className="container">
       <div className="wrapper">
         <div className="variants-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description">
-                Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <ProgresBar currentStep={2} />
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
+            <Header headerText="На какой курс вы запишитесь?" headerType="h2" />
             <ul className="variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-1" id="variant-1" />
-                <label htmlFor="variant-1">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-2" id="variant-2" />
-                <label htmlFor="variant-2">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-3" id="variant-3" />
-                <label htmlFor="variant-3">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-4" id="variant-4" />
-                <label htmlFor="variant-4">Ваш ответ</label>
-              </li>
+              {varirants.map((elem) => (
+                <AnswerItem
+                  key={elem.variantId}
+                  id={elem.variantId}
+                  answerText={elem.variantText}
+                  answerChange={() => setCourseVariants(elem.variantText)}
+                />
+              ))}
             </ul>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+            <AppButton buttonClick={handleClick} isDisabled={true} />
           </div>
         </div>
       </div>

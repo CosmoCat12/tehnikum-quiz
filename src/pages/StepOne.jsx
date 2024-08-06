@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AppInput } from "../components/AppInput";
 import { ProgresBar } from "../components/ProgresBar";
 import { AppButton } from "../components/appButton";
+import { Header } from "../components/Header";
 
 const StepOne = () => {
   const [name, setName] = useState("");
@@ -31,7 +32,7 @@ const StepOne = () => {
         <div className="single-input-quiz">
           <ProgresBar currentStep={1} /> {/* исправлено название компонента */}
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
+            <Header headerText="Для каких целей вы хотите обучаться?" />
             <label className="input-wrapper">
               <AppInput
                 inputText="Ваш ответ"
